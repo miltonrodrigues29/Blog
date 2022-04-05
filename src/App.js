@@ -1,5 +1,7 @@
+import TopBar from "./topbar/TopBar";
+
 function App() {
-  return <div>Blog App</div>;
+  return <TopBar></TopBar>;
 }
 
 export default App;
