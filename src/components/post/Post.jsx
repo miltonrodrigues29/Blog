@@ -5,7 +5,7 @@ export default function post() {
     <div className="post">
       <img
         className="postImg"
-        src="https://images.pexels.com/photos/2294361/pexels-photo-2294361.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        src="https://images.pexels.com/photos/994605/pexels-photo-994605.jpeg?auto=compress&cs=tinysrgb&w=600"
         alt=""
       ></img>
       <div className="postInfo">
