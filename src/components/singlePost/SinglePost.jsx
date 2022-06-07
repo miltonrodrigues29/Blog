@@ -1,17 +1,30 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import "./singlePost.css";
 
 export default function SinglePost() {
+  const location = useLocation();
+
+  const path = location.pathname.split("/")[2];
+  const [post, setPost] = useState({});
+
+  useEffect(() => {
+    const getPost = async () => {
+      const res = await axios.get("/posts/" + path);
+      setPost(res.data);
+    };
+    getPost();
+  }, [path]);
   return (
     <div className="singlePost">
       <div className="singlePostWrapper">
-        <img
-          src="https://images.unsplash.com/photo-1418985991508-e47386d96a71?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aWNlJTIwbGFuZHNjYXBlfGVufDB8fDB8fA%3D%3D&w=1000&q=80"
-          alt=""
-          className="singlePostImg"
-        ></img>
+        {post.photo && (
+          <img src={post.photo} alt="" className="singlePostImg"></img>
+        )}
       </div>
       <h1 className="singlePostTitle">
-        Contrary to popular belief, Lorem Ipsum is not simply random text.
+        {post.title}
         <div className="singlePostEdit">
           <i className="singlePostIcon fa-solid fa-pen-to-square"></i>
           <i className="singlePostIcon fa-solid fa-trash-can"></i>
@@ -19,24 +32,13 @@ export default function SinglePost() {
       </h1>
       <div className="singlePostInfo">
         <span className="singlePostAuthor">
-          Author: <b>Milton</b>
+          Author: <b>{post.username}</b>
         </span>
-        <span className="singlePostDate">1 hour ago</span>
+        <span className="singlePostDate">
+          {new Date(post.createdAt).toDateString()}
+        </span>
       </div>
-      <p className="singlePostDesc">
-        There are many variations of passages of Lorem Ipsum available, but the
-        majority have suffered alteration in some form, by injected humour.
-        There are many variations of passages of Lorem Ipsum available, but the
-        majority have suffered alteration in some form, by injected humour There
-        are many variations of passages of Lorem Ipsum available, but the
-        majority have suffered alteration in some form, by injected humour There
-        are many variations of passages of Lorem Ipsum available, but the
-        majority have suffered alteration in some form, by injected humour There
-        are many variations of passages of Lorem Ipsum available, but the
-        majority have suffered alteration in some form, by injected humour There
-        are many variations of passages of Lorem Ipsum available, but the
-        majority have suffered alteration in some form, by injected humour
-      </p>
+      <p className="singlePostDesc">{post.desc}</p>
     </div>
   );
 }
