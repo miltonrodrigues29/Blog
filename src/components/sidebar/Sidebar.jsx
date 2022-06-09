@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { Context } from "../../context/Context";
 
+// 3
 export default function Sidebar() {
   const PF = "http://localhost:5000/images/";
   const [cats, setCats] = useState([]);
