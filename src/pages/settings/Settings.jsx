@@ -4,7 +4,10 @@ import { useContext, useState } from "react";
 import { Context } from "../../context/Context";
 import axios from "axios";
 export default function Settings() {
-  const PF = "http://localhost:5000/images/";
+  const expresshost = process.env.REACT_APP_EXPRESS_HOST;
+  const port = process.env.REACT_APP_EXPRESS_PORT;
+  const url = `http://${expresshost}:${port}/images/`;
+  const PF = url;
   const { user, dispatch } = useContext(Context);
   const [file, setFile] = useState(null);
   const [username, setUsername] = useState(user.username);

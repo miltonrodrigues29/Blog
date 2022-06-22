@@ -2,7 +2,10 @@ import "./post.css";
 import { Link } from "react-router-dom";
 
 export default function post({ post }) {
-  const PF = "http://localhost:5000/images/";
+  const expresshost = process.env.REACT_APP_EXPRESS_HOST;
+  const port = process.env.REACT_APP_EXPRESS_PORT;
+  const url = `http://${expresshost}:${port}/images/`;
+  const PF = url;
   console.log("HEEEE");
 
   console.log(PF + post.photo);

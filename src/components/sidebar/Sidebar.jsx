@@ -6,7 +6,13 @@ import { Context } from "../../context/Context";
 
 // 3
 export default function Sidebar() {
-  const PF = "http://localhost:5000/images/";
+  const expresshost = process.env.REACT_APP_EXPRESS_HOST;
+  const port = process.env.REACT_APP_EXPRESS_PORT;
+  const url = `http://${expresshost}:${port}/images/`;
+
+  //
+  const PF = url;
+
   const [cats, setCats] = useState([]);
   const { user } = useContext(Context);
   useEffect(() => {

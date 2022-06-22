@@ -5,7 +5,10 @@ import { Context } from "../../context/Context";
 import "./singlePost.css";
 
 export default function SinglePost() {
-  const PF = "http://localhost:5000/images/";
+  const expresshost = process.env.REACT_APP_EXPRESS_HOST;
+  const port = process.env.REACT_APP_EXPRESS_PORT;
+  const url = `http://${expresshost}:${port}/images/`;
+  const PF = url;
   const location = useLocation();
 
   const path = location.pathname.split("/")[2];
